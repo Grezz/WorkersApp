@@ -1,0 +1,59 @@
+﻿<Window x:Class="WorkersApp.Client.View.WorkerListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkersApp.Client.View"
+        mc:Ignorable="d"
+        Title="WorkerListWindow" Height="450" Width="500">
+    <Grid x:Name="grid" ShowGridLines="false">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="500"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="300"/>
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="stackPanel" Grid.Row="0"
+                    Orientation="Vertical">
+            <GroupBox Header="Workers list">
+                <ListView x:Name="workersList" 
+                          Margin="5,5,5,5" 
+                          VerticalAlignment="Stretch"
+                          MinHeight="300"
+                          ItemsSource="{Binding WorkersList}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Firstname}" Width="80">Имя</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Secondname}" Width="80">Фамилия</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Middlename}" Width="80">Отчетство</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Birthday, StringFormat='dd/MM/yyyy'}" Width="90">Дата рождения</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Sex}" Width="40">Пол</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Childrens}" Width="90">Наличие детей</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Width="120" 
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Click="BtnAdd_Click"
+                    Name="btnAdd">Добавить</Button>
+            <Button Width="120" 
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Click="BtnEdit_Click"
+                    Name="btnEdit">Изменить</Button>
+            <Button Width="120" 
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    Click="BtnDelete_Click"
+                    Name="btnDelete">Удалить</Button>
+
+        </StackPanel>
+    </Grid>
+</Window>

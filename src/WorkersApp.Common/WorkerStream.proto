@@ -1,0 +1,45 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "WorkersApp.Common";
+
+package WorkerStream;
+
+service WorkerStream {
+  rpc GetListWorkersGrpc(WorkersListRequestGrpc) returns (WorkersListResponseGrpc);
+  rpc AddWorkerGrpc(AddingWorkerGrpc) returns (WorkerIDGrpc);
+  rpc EditWorkerGrpc(WorkerGrpc) returns (WorkerIDGrpc);
+  rpc DeleteWorkerGrpc(WorkerIDGrpc) returns (DeletingWorkerReques);
+}
+
+message AddingWorkerGrpc {
+	string	Firstname = 1;
+	string	Secondname = 2;
+	string	Middlename = 3;
+	google.protobuf.Timestamp	Birthday = 4;
+	bool	IsMan = 5;
+	int32	Childrens = 6;
+}
+
+message WorkerGrpc {
+	int32	id = 1;
+	string	Firstname = 2;
+	string	Secondname = 3;
+	string	Middlename = 4;
+	google.protobuf.Timestamp Birthday = 5;
+	bool	IsMan = 6;
+	int32	Childrens = 7;
+}
+
+message WorkersListRequestGrpc {}
+
+message WorkerIDGrpc {
+	int32 id = 1;
+}
+
+message WorkersListResponseGrpc {
+	repeated WorkerGrpc workersList = 1;
+}
+
+message DeletingWorkerReques{}
